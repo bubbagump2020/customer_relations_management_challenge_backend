@@ -17,13 +17,16 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  url: <%= ENV['VCL_DATABASE_URL'] %>
+  username: <%= ENV['VCL_USER'] %>
+  password: <%= ENV['VCL_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#  pool: <%#= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: vcl_challenge_development
+  database: vcl_challenge
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: vcl_challenge_test
+#  database: vcl_challenge_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -80,6 +83,4 @@ test:
 #
 production:
   <<: *default
-  database: vcl_challenge_production
-  username: vcl_challenge
-  password: <%= ENV['VCL_CHALLENGE_DATABASE_PASSWORD'] %>
+  database: vcl_challenge
