@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    client = Client.new
+    client = Client.new(client_params)
     if client.save
       render json: { message: 'Client Saved!' }
     else
@@ -19,7 +19,13 @@ class ClientsController < ApplicationController
   end
 
   def delete
-    
+
   end
+
+  def client_params
+    params.permit(:first_name, :last_name, :email, :stage, :phone, :company, :probability)
+  end
+
+
 
 end
