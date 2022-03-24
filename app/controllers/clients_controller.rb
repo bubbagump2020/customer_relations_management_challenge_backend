@@ -37,5 +37,5 @@ class ClientsController < ApplicationController
   def client_params
     params.permit(:first_name, :last_name, :email, :stage, :phone, :company, :probability)
   end
-  
+
 end
