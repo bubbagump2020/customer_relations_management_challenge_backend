@@ -25,11 +25,12 @@ class ClientsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     client = Client.find_by_id(params[:id])
     if !client
       render json: { message: 'Client not found', errors: client.errors.full_messages }
     else
+      client.delete
       render json: { message: 'Client deleted' }
     end
   end
