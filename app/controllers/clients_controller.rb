@@ -7,38 +7,31 @@ class ClientsController < ApplicationController
     render json: clients
   end
 
-  def retrieve_clients
-    Client.order(:last_name)
-  end
-
   def create
     client = Client.new(client_params)
     if client.save
-      clients = retrieve_clients
-      render json: { message: 'Client Saved!', clients: clients }
+      render json: { response: 'Client Saved!' }
     else
-      render json: { message: client.errors.full_messages }
+      render json: { response: 'Client not saved!', status: 500  }
     end
   end
 
   def update
     client = Client.find_by_id(params[:id])
     if client.update(client_params)
-      clients = retrieve_clients
-      render json: { message: 'Client updated', clients: clients }
+      render json: { response: 'Client updated' }
     else
-      render json: { message: 'Client not updated', errors: client.errors.full_messages }
+      render json: { response: 'Client not found', status: 404 }
     end
   end
 
   def destroy
     client = Client.find_by_id(params[:id])
     if !client
-      render json: { message: 'Client not found', errors: client.errors.full_messages }
+      render json: { response: 'Client not found', status: 404 }
     else
       client.delete
-      clients = retrieve_clients
-      render json: { message: 'Client deleted', clients: clients }
+      render json: { response: 'Client deleted' }
     end
   end
 
