@@ -3,35 +3,35 @@ class ClientsController < ApplicationController
   # errors.full_messages is for troubleshooting and will not be included in production
 
   def index
-    clients = Client.all
+    clients = Client.order(:last_name)
     render json: clients
   end
 
   def create
     client = Client.new(client_params)
     if client.save
-      render json: { message: 'Client Saved!' }
+      render json: { response: 'Client Saved!' }
     else
-      render json: { message: client.errors.full_messages }
+      render json: { response: 'Client not saved!', status: 500  }
     end
   end
 
   def update
     client = Client.find_by_id(params[:id])
     if client.update(client_params)
-      render json: { message: 'Client updated', client: client }
+      render json: { response: 'Client updated' }
     else
-      render json: { message: 'Client not updated', errors: client.errors.full_messages }
+      render json: { response: 'Client not found', status: 404 }
     end
   end
 
   def destroy
     client = Client.find_by_id(params[:id])
     if !client
-      render json: { message: 'Client not found', errors: client.errors.full_messages }
+      render json: { response: 'Client not found', status: 404 }
     else
       client.delete
-      render json: { message: 'Client deleted' }
+      render json: { response: 'Client deleted' }
     end
   end
 
