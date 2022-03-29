@@ -1,10 +1,5 @@
 #!/bin/bash
 
-
-sudo apt install ruby-railties
-
-sudo apt install ruby-bundler
-
 echo 'changing directories to vcl_challenge'
 
 cd vcl_challenge
