@@ -1,12 +1,6 @@
 #!/bin/bash
 
-echo "Unzipping the s3 object deployed to the instance"
-
-cd ~
-
-unzip vcl_challenge.zip
-
-echo "Changing directories to the now unzipped folder"
+echo 'changing directories to vcl_challenge'
 
 cd vcl_challenge
 
