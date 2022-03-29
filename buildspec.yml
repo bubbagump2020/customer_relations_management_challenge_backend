@@ -1,0 +1,13 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-version:
+      ruby: 2.7.2
+    commands:
+      - sudo apt install rbenv
+      - rbenv install 2.7.2
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'build'
