@@ -3,8 +3,8 @@ os: linux
 files:
   - source: /
     destination: /home/ubuntu
-  hooks:
-    ApplicationStart:
-      - location: ApplicationStart.sh
-        timeout: 300
-        runas: ubuntu
+hooks:
+  ApplicationStart:
+    - location: ApplicationStart.sh
+      timeout: 300
+      runas: ubuntu
